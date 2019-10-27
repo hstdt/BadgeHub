@@ -30,7 +30,7 @@ $ open BadgeHub.xcworkspace
 ```
 
 ## Requirements
-- iOS 10.0 or later
+- iOS 9.0 or later
 - Swift 5+
 - Xcode 10+
 
