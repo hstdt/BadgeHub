@@ -43,7 +43,7 @@ public class BadgeHub: NSObject {
             checkZero()
         }
     }
-    var maxCount: Int = 0
+    public var maxCount: Int = 0
     var hubView: UIView?
 
     private var curOrderMagnitude: Int = 0
