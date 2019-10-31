@@ -43,6 +43,8 @@ public class BadgeHub: NSObject {
             checkZero()
         }
     }
+
+    @objc
     public var maxCount: Int = 0
     var hubView: UIView?
 
@@ -60,6 +62,7 @@ public class BadgeHub: NSObject {
     private var isIndeterminateMode = false
 
     // MARK: - SETUP
+    @objc
     public init(view: UIView) {
         super.init()
 
@@ -76,6 +79,7 @@ public class BadgeHub: NSObject {
     //    }
 
     // Adjustment methods
+    @objc
     public func setView(_ view: UIView?, andCount startCount: Int) {
         curOrderMagnitude = 0
 
@@ -106,6 +110,7 @@ public class BadgeHub: NSObject {
     }
 
     // Set the frame of the notification circle relative to the button
+    @objc
     public func setCircleAtFrame(_ frame: CGRect) {
         redCircle.frame = frame
         initialCenter = CGPoint(x: frame.origin.x + frame.size.width / 2, y: frame.origin.y + frame.size.height / 2)
@@ -118,6 +123,7 @@ public class BadgeHub: NSObject {
     }
 
     // Change the color of the notification circle
+    @objc
     public func setCircleColor(_ circleColor: UIColor?, label labelColor: UIColor?) {
         redCircle.isUserChangingBackgroundColor = true
         redCircle.backgroundColor = circleColor
@@ -126,11 +132,13 @@ public class BadgeHub: NSObject {
         }
     }
 
+    @objc
     public func setCircleBorderColor(_ color: UIColor?, borderWidth width: CGFloat) {
         redCircle.layer.borderColor = color?.cgColor
         redCircle.layer.borderWidth = width
     }
 
+    @objc
     public func moveCircleBy(x: CGFloat, y: CGFloat) {
         var frame: CGRect = redCircle.frame
         frame.origin.x += x
@@ -139,6 +147,7 @@ public class BadgeHub: NSObject {
     }
 
     // Changes the size of the circle. setting a scale of 1 has no effect
+    @objc
     public func scaleCircleSize(by scale: CGFloat) {
         let fr: CGRect = initialFrame
         let width: CGFloat = fr.size.width * scale
@@ -151,21 +160,25 @@ public class BadgeHub: NSObject {
     }
 
     // Increases count by 1
+    @objc
     public func increment() {
         increment(by: 1)
     }
 
     // Increases count by amount
+    @objc
     public func increment(by amount: Int) {
         count += amount
     }
 
     // Decreases count
+    @objc
     public func decrement() {
         decrement(by: 1)
     }
 
     // Decreases count by amount
+    @objc
     public func decrement(by amount: Int) {
         if amount >= count {
             count = 0
@@ -174,17 +187,20 @@ public class BadgeHub: NSObject {
         count -= amount
     }
 
+    @objc
     public func hideCount() {
         countLabel?.isHidden = true
         isIndeterminateMode = true
     }
 
+    @objc
     public func showCount() {
         isIndeterminateMode = false
         checkZero()
     }
 
     // Animations
+    @objc
     public func pop() {
         let height = baseFrame.size.height
         let width = baseFrame.size.width
@@ -272,6 +288,7 @@ public class BadgeHub: NSObject {
         }
     }
 
+    @objc
     public func blink() {
         self.setAlpha(alpha: Float(blinkAlpha))
 
@@ -289,6 +306,7 @@ public class BadgeHub: NSObject {
     }
 
     // Animation that jumps similar to OSX dock icons
+    @objc
     public func bump() {
         if !initialCenter.equalTo(redCircle.center) {
             // canel previous animation
@@ -313,6 +331,7 @@ public class BadgeHub: NSObject {
     }
 
     // Set the count yourself
+    @objc
     public func setCount(_ newCount: Int) {
         count = newCount
 
@@ -328,15 +347,17 @@ public class BadgeHub: NSObject {
     }
 
     // Set the font of the label
+    @objc
     public func setCountLabel(_ font: UIFont?) {
         countLabel?.font = font
     }
 
+    @objc
     public func countLabelFont() -> UIFont? {
         return countLabel?.font
     }
 
-
+    @objc
     public func bumpCenterY(yVal: Float) {
         var center: CGPoint = redCircle.center
         center.y = initialCenter.y - CGFloat(yVal)
@@ -344,11 +365,13 @@ public class BadgeHub: NSObject {
         countLabel?.center = center
     }
 
+    @objc
     public func setAlpha(alpha: Float) {
         redCircle.alpha = CGFloat(alpha)
         countLabel?.alpha = CGFloat(alpha)
     }
-
+    
+    @objc
     public func checkZero() {
         if count <= 0 {
             redCircle.isHidden = true
